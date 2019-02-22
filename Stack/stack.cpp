@@ -1,17 +1,4 @@
-#include <iostream>
-using namespace std;
-
-typedef class Stack {
-private:
-	int *_stack_ptr;
-	const int _size;
-	int _top;
-public:
-	Stack(int csize);
-	~Stack();
-	void Push(int data);
-	int Pop();
-}stack;
+#include "Stack.h"
 
 Stack::Stack(int size):
 	_size(size)
@@ -28,19 +15,43 @@ Stack::~Stack()
 void Stack::Push(int data)
 {
 	if (_top < _size) *(_stack_ptr + _top++) = data;
+	else
+	{
+		throw out_of_range("stack overflow");
+	}
 }
 
 int Stack::Pop()
 {
 	if (_top > 0) return *(_stack_ptr + --_top);
+	else
+	{
+		throw out_of_range("stack is empty");
+		return 0;
+	}
 }
 
-int main()
+int Stack::Top()
 {
-	stack s(10);
-	s.Push(1);
-	s.Push(2);
-	s.Push(3);
-	cout << s.Pop();
-	return 0;
+	if (_top > 0) return *(_stack_ptr + _top - 1);
+	else
+	{
+		throw out_of_range("stack is empty");
+		return 0;
+	}
 }
+
+void Stack::Dup()
+{
+	if (_top < _size) *(_stack_ptr + _top++) = *(_stack_ptr + _top - 1);
+	else
+	{
+		throw out_of_range("stack overflow");
+	}
+}
+
+void Stack::Clear()
+{
+	_top = 0;
+}
+
