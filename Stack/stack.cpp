@@ -1,6 +1,6 @@
 #include "Stack.h"
 
-Stack::Stack(int size):
+Stack::Stack(int size) :
 	_size(size)
 {
 	_stack_ptr = new int [_size];
@@ -53,5 +53,51 @@ void Stack::Dup()
 void Stack::Clear()
 {
 	_top = 0;
+}
+
+bool Stack::Empty()
+{
+	if (_top != 0) return true;
+	return false;
+}
+
+void Stack::mul()
+{
+	if (_top > 1)
+	{
+		int x = Pop(), y = Pop();
+		Push(x * y);
+	}
+	else throw out_of_range("stack is empty");
+}
+
+void Stack::add()
+{
+	if (_top > 1)
+	{
+		int x = Pop(), y = Pop();
+		Push(x + y);
+	}
+	else throw out_of_range("stack is empty");
+}
+
+void Stack::sub()
+{
+	if (_top > 1)
+	{
+		int x = Pop(), y = Pop();
+		Push(y - x);
+	}
+	else throw out_of_range("stack is empty");
+}
+
+void Stack::div()
+{
+	if (_top > 1)
+	{
+		int x = Pop(), y = Pop();
+		Push(y / x);
+	}
+	else throw out_of_range("stack is empty");
 }
 

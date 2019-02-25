@@ -17,4 +17,10 @@ public:
 	int Top();
 	void Dup();
 	void Clear();
+	bool Empty();
+
+	void mul();
+	void add();
+	void sub();
+	void div();
 }stack;
